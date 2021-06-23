@@ -1,11 +1,11 @@
 #include <stdio.h>
 const int sizeX = 5;
 const int sizeY = 5;
-int map[8][8]={{0,0,0,0,0},
+int map[][5]={{0,0,0,0,0},
+{0,0,0,0,0},
 {0,0,0,0,0},
 {0,0,0,0,1},
-{0,1,0,0,0},
-{0,0,0,0,1}};
+{0,0,0,0,0}};
 void Binary (int n)
 {
   if(n >= 2)
