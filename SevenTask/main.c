@@ -146,7 +146,7 @@ int main(int argc, char const *argv[]) {
       printArr(arr, n);
       sortQ(arr, n);
       printArr(arr, n);
-      randArr(arr, n, 125);
+      free(arr);
       break;
 
       case 2:
@@ -161,11 +161,11 @@ int main(int argc, char const *argv[]) {
       bucketSort(arreven, counteven);
       mergeArr(arr, arreven, n);
       printArr(arr, n);
-      randArr(arr, n, 125);
+      free(arr);
+      free(arreven);
       break;
 
       case 0:
-      free(arreven);
       return 0;
 
       default:
