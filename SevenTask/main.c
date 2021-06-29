@@ -129,12 +129,7 @@ void bucketSort(int* arr, int len)
   }
 }
 int main(int argc, char const *argv[]) {
-  const int n = 15;
-  int arr[n];
-  randArr(arr, n, 125);
-  int counteven = countEven(arr, n);
-  int* arreven = (int*)calloc(counteven, sizeof(int));
-  int option;
+  int n, option, counteven, *arr, *arreven;
 
   while(1) {
     printf("Menu:\n");
@@ -144,6 +139,10 @@ int main(int argc, char const *argv[]) {
     scanf("%d", &option);
     switch (option) {
       case 1:
+      printf("Vvedite razmer massiva\n");
+      scanf("%d", &n);
+      arr = (int*)calloc(n, sizeof(int));
+      randArr(arr, n, 125);
       printArr(arr, n);
       sortQ(arr, n);
       printArr(arr, n);
@@ -151,7 +150,13 @@ int main(int argc, char const *argv[]) {
       break;
 
       case 2:
+      printf("Vvedite razmer massiva\n");
+      scanf("%d", &n);
+      arr = (int*)calloc(n, sizeof(int));
+      randArr(arr, n, 125);
       printArr(arr, n);
+      counteven = countEven(arr, n);
+      arreven = (int*)calloc(counteven, sizeof(int));
       arrEven(arr, arreven, n);
       bucketSort(arreven, counteven);
       mergeArr(arr, arreven, n);
