@@ -15,7 +15,6 @@ int countEven(const int* arr, int len)
 void arrEven(int* arr, int* arreven, int len)
 {
   int count = 0;
-  int countnot = 0;
   for(int i = 0; i < len; i++) {
     if(arr[i]%2 == 0) arreven[count++] = arr[i];
   }
@@ -54,18 +53,22 @@ void printArr(int* arr, int n)
 }
 
 //Поиск медианы
-void Med(int* a, int* b, int* c)
+int Med(int a, int b, int c)
 {
-    swapInt(((*a >= *b && *a <= *c) || (*a <= *b && *a >= *c) ? a :
-          ((*b >= *a && *b <= *c) || (*b <= *a && *b >= *c) ? b : c)), b);
+    return ((a >= b && a <= c) || (a <= b && a >= c) ? a :
+          ((b >= a && b <= c) || (b <= a && b >= c) ? b : c));
 }
 
 //Быстрая сортировка
 void Qs(int* arr, int first, int last)
 {
+  if((last - first) <=10)
+  {
+    return;
+  }
   int i = first;
   int j = last;
-  int x = arr[(first + last)/2];
+  int x = Med(arr[first], arr[(first + last)/2], arr[last]);
   do {
       while (arr[i] < x) i++;
       while (arr[j] > x) j--;
@@ -96,15 +99,11 @@ void sortInserts(int* arr, int len)
 //Интерфейс улучшенной сортировки
 void sortQ (int* arr, int len)
 {
-  if(len <=10)
-  {
-    sortInserts(arr, len);
-    return;
-  }
-  Med(&arr[0], &arr[len/2], &arr[len-1]);
   Qs(arr, 0, len-1);
+  sortInserts(arr, len);
 }
 
+//Корзинная сортировка
 void bucketSort(int* arr, int len)
 {
   const int max = len;
