@@ -3,12 +3,17 @@
 #include <stdlib.h>
 #include <math.h>
 
+typedef enum convert {
+  toArr = 1,
+  to2Arr
+} CONVERT;
+
 //Флаг 1 - Перевод двумерного массива в одномерый
 //Флаг 2 - Перевод одномерного массива в двумерный
-void arr2Arr(int** arr, int* arr1, int n, int m, int flag)
+void arr2Arr(int** arr, int* arr1, int n, int m, CONVERT flag)
 {
   int ch = 0;
-  if(flag == 1)
+  if(flag == toArr)
   {
     for(int i = 0; i < n; i++)
       for(int j = 0; j < m; j++)
@@ -17,7 +22,7 @@ void arr2Arr(int** arr, int* arr1, int n, int m, int flag)
         ch++;
       }
   }
-  if(flag == 2)
+  if(flag == to2Arr)
   {
     for(int i = 0; i < n; i++)
       for(int j = 0; j < m; j++)
@@ -49,7 +54,7 @@ void randArr(int** arr, int n, int m)
 void bubbleSort(int** arr, int n, int m)
 {
   int* arr1 = (int*) calloc(n*m, sizeof(int));
-  arr2Arr(arr, arr1, n, m, 1);
+  arr2Arr(arr, arr1, n, m, toArr);
   int swap = *arr1;
   int raz = n*m;
   for(int i = 0; i < raz; i++)
@@ -62,7 +67,7 @@ void bubbleSort(int** arr, int n, int m)
         *(arr1 + j - 1) = swap;
       }
     }
-  arr2Arr(arr, arr1, n, m, 2);
+  arr2Arr(arr, arr1, n, m, to2Arr);
   free(arr1);
 }
 
