@@ -59,11 +59,27 @@ int Med(int a, int b, int c)
           ((b >= a && b <= c) || (b <= a && b >= c) ? b : c));
 }
 
+//Сортировка вставками
+void sortInserts(int* arr, int first, int last)
+{
+  int temp, pos;
+  for (int i = first+1; i <= last; i++) {
+      temp = arr[i];
+      pos = i - 1;
+      while (pos >= 0 && arr[pos] > temp) {
+        arr[pos + 1] = arr[pos];
+        pos--;
+      }
+      arr[pos + 1] = temp;
+  }
+}
+
 //Быстрая сортировка
 void Qs(int* arr, int first, int last)
 {
   if((last - first) <=10)
   {
+    sortInserts(arr, first, last);
     return;
   }
   int i = first;
@@ -82,25 +98,14 @@ void Qs(int* arr, int first, int last)
   if(first < j) Qs(arr, first, j);
 }
 
-//Сортировка вставками
-void sortInserts(int* arr, int len)
-{
-  int temp, pos;
-  for (int i = 1; i < len; i++) {
-      temp = arr[i];
-      pos = i - 1;
-      while (pos >= 0 && arr[pos] > temp) {
-        arr[pos + 1] = arr[pos];
-        pos--;
-      }
-  }
-}
+
+
 
 //Интерфейс улучшенной сортировки
 void sortQ (int* arr, int len)
 {
   Qs(arr, 0, len-1);
-  sortInserts(arr, len);
+  //sortInserts(arr, len);
 }
 
 //Корзинная сортировка
